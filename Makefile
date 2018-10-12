@@ -157,14 +157,14 @@ commit-version: ## commit and tag the release
 ### Tagging ###
 
 commit-tag-push: ## commit and tag the release
-	@echo "\n\n*** Commit $(version) version"
-	git commit -m "version $(version) release" CHANGES.md
+	@echo "\n\n*** Commit CHANGES"
+	git commit -m "version $(version) release" CHANGES.md || echo "no changes to commit"
 
 	@echo "\n\n*** Tag $(version) version"
 	git tag -a $(version) -m "$(version)" && git push --tags
 
 	@echo "\n\n*** Push all changes"
-	git push
+	git push --set-upstream origin release-$(version)
 
 
 ### Testing new package installation

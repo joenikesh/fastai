@@ -10,6 +10,17 @@ The release process uses the master branch and also creates and uses a `release-
 
 The exact order to be followed is essential.
 
+Quick and dirty:
+
+   ```
+   make master-branch-switch
+   make bump && make release-branch-create && make commit-version
+   make master-branch-switch && make bump-dev && make commit-dev-cycle-push
+   make prev-branch-switch && make test && make commit-tag-push
+   make release && make test-install
+   make master-branch-switch
+   ```
+
 We will use starting from `master@1.0.6.dev0` as a starting point for the workflow.
 
 1. make sure we start with master branch
@@ -38,7 +49,6 @@ Normally, `git pull` to HEAD is fine, but it's the best to know which 'stable' <
 
 4. start release-$(version) branch
 
-make bump && make release-branch-create && make commit-version && cat fastai/version.py
 
    ```
    make bump                     # 1.0.6.dev0 => 1.0.6
@@ -48,7 +58,6 @@ make bump && make release-branch-create && make commit-version && cat fastai/ver
 
 5. go back to master and bump it to the next version + .dev0
 
-make master-branch-switch && make bump-dev
 
    ```
    make master-branch-switch
