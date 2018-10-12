@@ -38,12 +38,17 @@ Normally, `git pull` to HEAD is fine, but it's the best to know which 'stable' <
 
 4. start release-$(version) branch
 
+make bump && make release-branch-create && make commit-version && cat fastai/version.py
+
    ```
    make bump                     # 1.0.6.dev0 => 1.0.6
    make release-branch-create    # git checkout -b release-$(version)
+   make commit-version
    ```
 
 5. go back to master and bump it to the next version + .dev0
+
+make master-branch-switch && make bump-dev
 
    ```
    make master-branch-switch

@@ -143,18 +143,22 @@ master-branch-switch:
 	@echo "*** Switching to master branch: version $(version)"
 	git checkout master
 
-commit-dev-cycle-push: ## commit and tag the release
+commit-dev-cycle-push: ## commit version and CHANGES and push
 	@echo "\n\n*** Start new dev cycle: $(version)"
 	git commit -m "new dev cycle: $(version)" $(version_file) CHANGES.md
 
 	@echo "\n\n*** Push all changes"
 	git push
 
+commit-version: ## commit and tag the release
+	@echo "\n\n*** Start release branch: $(version)"
+	git commit -m "starting release branch: $(version)" $(version_file)
+
 ### Tagging ###
 
 commit-tag-push: ## commit and tag the release
 	@echo "\n\n*** Commit $(version) version"
-	git commit -m "version $(version) release" $(version_file) CHANGES.md
+	git commit -m "version $(version) release" CHANGES.md
 
 	@echo "\n\n*** Tag $(version) version"
 	git tag -a $(version) -m "$(version)" && git push --tags
