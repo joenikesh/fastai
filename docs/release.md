@@ -56,10 +56,10 @@ Normally, `git pull` to HEAD is fine, but it's the best to know which 'stable' <
    make commit-dev-cycle-push
    ```
 
-6. now we are no longer concerned with master, all the rest of the work is done on release-$(version) branch
+6. now we are no longer concerned with master, all the rest of the work is done on release-$(version) branch (we are using `git checkout -` here (like in `cd -`, since we no longer have the previous version)
 
    ```
-   make release-branch-switch    # git checkout release-$(version)
+   make prev-branch-switch    # git checkout release-$(version)
    ```
 
 7. finalize CHANGES.md (remove empty items) - version and date (could be automated)

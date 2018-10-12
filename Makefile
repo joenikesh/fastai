@@ -122,7 +122,14 @@ git-pull: ## git pull
 
 git-not-dirty:
 	@echo "*** Checking that everything is committed"
-	[[ -n $(git status -s) ]] && $(error uncommitted git files)
+	@if [ -n "$(git status -s)" ]; then\
+		echo "uncommitted git files";\
+		false;\
+    fi
+
+prev-branch-switch:
+	@echo "*** Switching to prev branch"
+	git checkout -
 
 release-branch-create:
 	@echo "*** Creating branch release-$(version)"
